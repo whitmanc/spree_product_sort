@@ -1,7 +1,7 @@
 require 'spree_core'
-require 'spree_ordering_in_taxons_hooks'
+require 'spree_product_sort_hooks'
 
-module SpreeOrderingInTaxons
+module SpreeProductSort
   class Engine < Rails::Engine
 
     config.autoload_paths += %W(#{config.root}/lib)

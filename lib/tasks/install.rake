@@ -1,8 +1,8 @@
-namespace :spree_ordering_in_taxons do
+namespace :spree_product_sort do
   desc "Copies all migrations and assets (NOTE: This will be obsolete with Rails 3.1)"
   task :install do
-    Rake::Task['spree_ordering_in_taxons:install:migrations'].invoke
-    Rake::Task['spree_ordering_in_taxons:install:assets'].invoke
+    Rake::Task['spree_product_sort:install:migrations'].invoke
+    Rake::Task['spree_product_sort:install:assets'].invoke
   end
 
   namespace :install do

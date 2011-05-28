@@ -1,4 +1,4 @@
-= Ordering In Taxons
+= Spree Product Sort
 
 Simple, untested extention to order products within a taxon (thereby controlling which show up on the front page of a taxon page).
 

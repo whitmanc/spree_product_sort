@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree_ordering_in_taxons'
+  s.name        = 'spree_product_sort'
   s.version     = '0.60.0'
   s.summary     = 'Add gem summary here'
   s.description = 'Add (optional) gem description here'

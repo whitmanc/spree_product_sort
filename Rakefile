@@ -23,7 +23,7 @@ end
 desc "Default Task"
 task :default => [:spec, :cucumber ]
 
-spec = eval(File.read('spree_ordering_in_taxons.gemspec'))
+spec = eval(File.read('spree_product_sort.gemspec'))
 
 Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
@@ -42,12 +42,12 @@ task :default => [ :spec ]
 desc "Regenerates a rails 3 app for testing"
 task :test_app do
   require '../spree/lib/generators/spree/test_app_generator'
-  class SpreeOrderingInTaxonTestAppGenerator < Spree::Generators::TestAppGenerator
+  class SpreeProductSortTestAppGenerator < Spree::Generators::TestAppGenerator
 
     def install_gems
       inside "test_app" do
         run 'rake spree_core:install'
-        run 'rake spree_ordering_in_taxons:install'
+        run 'rake spree_product_sort:install'
       end
     end
 
@@ -59,12 +59,12 @@ task :test_app do
     def full_path_for_local_gems
       <<-gems
 gem 'spree_core', :path => \'#{File.join(File.dirname(__FILE__), "../spree/", "core")}\'
-gem 'spree_ordering_in_taxons', :path => \'#{File.dirname(__FILE__)}\'
+gem 'spree_product_sort', :path => \'#{File.dirname(__FILE__)}\'
       gems
     end
 
   end
-  SpreeOrderingInTaxonTestAppGenerator.start
+  SpreeProductSortTestAppGenerator.start
 end
 
 namespace :test_app do
