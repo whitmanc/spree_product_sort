@@ -8,7 +8,6 @@ Rails.application.routes.draw do
         get :select
       end
       collection do
-        get :available
         get :positions
       end
     end
