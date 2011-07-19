@@ -1,9 +1,8 @@
-= Spree Product Sort
+Spree Product Sort
+==================
 
-Simple, untested extention to order products within a taxon (thereby controlling which show up on the front page of a taxon page).
+Simple extention to sort products within a taxon & global index.
 
-Changes include: <br/>
-  * new "product_taxons" table with migration and ProductTaxon class with position column, acts_as_list :scope=>:taxon <br/>
-  * changed product.taxons to has_many :through from has_and_belongs_to_many<br/>
-  * overrode Product.available named scope to add include=>:product_taxons, :order=>'product_taxons.position'<br/>
-  * added sortable list of products to the taxon edit page (right click the taxon and choose edit to get there)<br/>
+It works by creating a new DB table to store the product positions for each taxon, and adding an admin view that lets you drag-and-drop them into place.
+
+Based on: [https://github.com/jdevine/spree-ordering-in-taxons link](https://github.com/jdevine/spree-ordering-in-taxons)
