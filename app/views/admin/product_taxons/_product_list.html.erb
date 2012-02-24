@@ -10,7 +10,7 @@
   product_taxons = products.collect {|p| p.product_taxons.where(:taxon_id => taxon.id || 0).first }
 %>
 
-<% product_taxons.each do |pt| %>
+<% product_taxons.compact.each do |pt| %>
   <li id="product_taxons_<%=pt.id%>">
    <span class="handle">≡</span>
    <%= h pt.product.name %>
