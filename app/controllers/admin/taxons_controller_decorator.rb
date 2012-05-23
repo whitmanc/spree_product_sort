@@ -1,4 +1,4 @@
-Admin::TaxonsController.class_eval do
+Spree::Admin::TaxonsController.class_eval do
 
   def reorder_products
     params[:product_taxons].each_with_index do |ptid, idx|
