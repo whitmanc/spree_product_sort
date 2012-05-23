@@ -1,4 +1,4 @@
-Product.class_eval do
+Spree::Product.class_eval do
   has_many :product_taxons
   has_many :taxons, :through=>:product_taxons
 
