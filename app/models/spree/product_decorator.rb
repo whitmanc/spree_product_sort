@@ -2,14 +2,14 @@ Spree::Product.class_eval do
   has_many :product_taxons
   has_many :taxons, :through=>:product_taxons
 
-  #default_scope :include=>:product_taxons, :order=>"product_taxons.position"
-  scope :ordered, {:include=>:product_taxons, :order=>"spree_product_taxons.position"}
+  after_create :assign_to_main_index_taxon
 
-  scope :available, lambda { |*args| 
-    where(["spree_products.available_on <= ?", args.first || Time.zone.now]).
-      includes(:product_taxons).
-      order('spree_product_taxons.taxon_id, spree_product_taxons.position') #group positions by taxon so that home page (0) works
-  }
+  def self.ordered(taxon_id)
+    includes(:product_taxons)
+    .where("#{Spree::ProductTaxon.quoted_table_name}.taxon_id = #{taxon_id}")
+    .order("#{Spree::ProductTaxon.quoted_table_name}.taxon_id, 
+	   #{Spree::ProductTaxon.quoted_table_name}.position")
+  end
 
   def in_taxon?(taxon)
     case taxon
@@ -22,6 +22,10 @@ Spree::Product.class_eval do
       else
         false
     end
+  end
+
+  def assign_to_main_index_taxon
+    Spree::ProductTaxon.create(:product_id => self.id, :taxon_id => 0)
   end
 
 end
