@@ -1,6 +1,8 @@
 Spree::Product.class_eval do
   has_many :product_taxons
   has_many :taxons, :through=>:product_taxons
+  
+  default_scope :include => :product_taxons, :order => "spree_product_taxons.position"
 
   after_create :assign_to_main_index_taxon
 
