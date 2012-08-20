@@ -2,16 +2,10 @@ Spree::Product.class_eval do
   has_many :product_taxons
   has_many :taxons, :through=>:product_taxons
   
-  default_scope :include => :product_taxons, :order => "spree_product_taxons.position"
-
+  default_scope includes(:product_taxons)
+                order("#{Spree::ProductTaxon.quoted_table_name}.position")
+  
   after_create :assign_to_main_index_taxon
-
-  def self.ordered(taxon_id)
-    includes(:product_taxons)
-    .where("#{Spree::ProductTaxon.quoted_table_name}.taxon_id = #{taxon_id}")
-    .order("#{Spree::ProductTaxon.quoted_table_name}.taxon_id, 
-	   #{Spree::ProductTaxon.quoted_table_name}.position")
-  end
 
   def in_taxon?(taxon)
     case taxon
