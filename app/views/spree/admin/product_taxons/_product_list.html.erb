@@ -24,6 +24,8 @@
     products = Spree::Product.available
   end
   
+  products = products.includes(:product_taxons).order("#{Spree::ProductTaxon.quoted_table_name}.position")
+  
   #collect the pts for this taxon from each product 
   product_taxons = products.collect {|p| p.product_taxons.where(:taxon_id => taxon.id || 0).first }
 %>
